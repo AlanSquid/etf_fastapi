@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-n8n-fastapi = "n8n_fastapi:main"
+start = "n8n_fastapi.main:main"
 
 [build-system]
 requires = ["hatchling"]
