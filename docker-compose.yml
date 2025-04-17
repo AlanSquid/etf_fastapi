@@ -1,0 +1,27 @@
+services:
+  fastapi:
+    build:
+      context: .  # 指向 Dockerfile 所在目錄
+      dockerfile: Dockerfile
+    image: n8n_fastapi # 指定映像名稱
+    container_name: fastapi-server
+    ports:
+      - "8081:8000"  # 將 FastAPI 的 8000 端口映射到主機
+    networks:
+      - app_network
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    ports:
+      - "5678:5678"  # 將 n8n 的 5678 端口映射到主機
+    volumes:
+      - /home/alan-yu/projects/n8n_project/n8n_data:/home/node/.n8n  # 將主機的 n8n_data 目錄掛載到容器內
+    environment:
+      - N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true  # 添加環境變數
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
