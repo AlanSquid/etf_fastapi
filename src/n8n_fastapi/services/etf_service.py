@@ -8,7 +8,7 @@ async def download_etf_csv_service(playwright: Playwright, etf_code: str):
         raise ValueError("ETF code must be either '0050' or '0056'")
 
     # 設定下載路徑
-    TARGET_DIR = f"/mnt/c/users/squid/documents/etf/{etf_code}"  # 最終儲存位置
+    TARGET_DIR = f"/mnt/etf/{etf_code}"  # 最終儲存位置
 
     today = datetime.today().strftime("%Y%m%d")
     filename = f"{today}_{etf_code}.csv"

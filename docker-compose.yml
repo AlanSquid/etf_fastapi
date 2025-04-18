@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     image: n8n_fastapi # 指定映像名稱
     container_name: fastapi-server
+    volumes:
+      - /home/alan-yu/projects/n8n_project/n8n_data:/mnt/etf  # 將 Windows 目錄掛載到容器內
     ports:
       - "8081:8000"  # 將 FastAPI 的 8000 端口映射到主機
     networks:
