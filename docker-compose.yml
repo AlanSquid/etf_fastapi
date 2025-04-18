@@ -16,11 +16,12 @@ services:
     image: n8nio/n8n:latest
     container_name: n8n
     ports:
-      - "${N8N_PORT:-5678}:5678"  # 將 n8n 的 5678 端口映射到主機
+      - "${N8N_PORT:-}:5678"  # 將 n8n 的 5678 端口映射到主機
     volumes:
       - ${N8N_DATA_PATH}:/home/node/.n8n  # 將主機的 n8n_data 目錄掛載到容器內
     environment:
       - N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true  # 添加環境變數
+      - GENERIC_TIMEZONE=Asia/Taipei  # 設定時區
     networks:
       - app_network
 

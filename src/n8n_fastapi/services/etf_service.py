@@ -11,10 +11,6 @@ async def download_etf_csv(playwright: Playwright, etf_code: str):
     # 設定下載路徑
     TARGET_DIR = f"/mnt/etf/{etf_code}"  # 最終儲存位置
 
-    today = datetime.today()
-    yesterday = (today - timedelta(days=1)).strftime("%Y%m%d")
-    filename = f"{yesterday}_{etf_code}.csv"
-
     chromium = playwright.chromium  # or "firefox" or "webkit".
     browser = await chromium.launch(headless=True)
     context = await browser.new_context(accept_downloads=True)
