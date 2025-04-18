@@ -41,10 +41,20 @@ async def download_etf_csv(playwright: Playwright, etf_code: str):
         
         # 取得檔案日期
         file_date = get_file_date(tmp_path)
+        
         # 編輯正確檔案名稱
         filename = f"{file_date}_{etf_code}.csv"
+        target_path = os.path.join(TARGET_DIR, filename)
+        
+        # 檢查檔案是否已存在，若存在則加上編號
+        counter = 1
+        while os.path.exists(target_path):
+            filename = f"{file_date}_{etf_code}({counter}).csv"
+            target_path = os.path.join(TARGET_DIR, filename)
+            counter += 1
+        
         # 重新命名檔案
-        os.rename(tmp_path, os.path.join(TARGET_DIR, filename))
+        os.rename(tmp_path, target_path)
 
     except Exception as e:
         print(f"下載失敗: {e}")
