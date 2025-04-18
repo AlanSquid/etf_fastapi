@@ -1,13 +1,15 @@
 # 專案啟動與環境設定
 
+主要使用Docker啟動
+
 ## 1. 複製環境變數檔案
 
 將專案中的環境變數範例檔案`.env.example`複製成新的 `.env` 檔案，並根據需求修改各項環境變數
 
 - ETF_DATA_PATH: 下載相關ETF的CSV檔案的存放路徑
 - N8N_DATA_PATH: n8n相關的檔案路徑
-- FASTAPI_PORT
-- N8N_PORT
+- FASTAPI_PORT: 宿主機的PORT號
+- N8N_PORT: 宿主機的PORT號
 
 
 ### 若專案clone下來的位置在wsl環境:
@@ -30,6 +32,14 @@
 
 例如:
 `http://fastapi:8000/api/v1/etf/download`
+
+## 若要在本地端只運行FastAPI
+
+1. `uv sync`
+2. `uv run playwright install --with-deps`
+3. `uv run start`
+
+啟動伺服器預設在localhost:8000
 
 
 

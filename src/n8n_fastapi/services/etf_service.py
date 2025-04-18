@@ -1,6 +1,7 @@
 from playwright.async_api import Playwright
 import os
 from datetime import datetime, timedelta
+from n8n_fastapi.utils.get_file_date import get_file_date
 
 
 async def download_etf_csv(playwright: Playwright, etf_code: str):
@@ -33,9 +34,18 @@ async def download_etf_csv(playwright: Playwright, etf_code: str):
 
         # 確保目錄存在
         os.makedirs(TARGET_DIR, exist_ok=True)
+        
+        # 暫存下載檔案
+        tmp_path = os.path.join(TARGET_DIR, "temp_download.csv")
+        await download.save_as(tmp_path)
+        
+        # 取得檔案日期
+        file_date = get_file_date(tmp_path)
+        # 編輯正確檔案名稱
+        filename = f"{file_date}_{etf_code}.csv"
+        # 重新命名檔案
+        os.rename(tmp_path, os.path.join(TARGET_DIR, filename))
 
-        # Wait for the download process to complete and save the downloaded file somewhere
-        await download.save_as(os.path.join(TARGET_DIR, filename))
     except Exception as e:
         print(f"下載失敗: {e}")
     finally:
