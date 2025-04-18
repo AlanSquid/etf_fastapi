@@ -9,7 +9,7 @@ async def download_etf_csv(playwright: Playwright, etf_code: str):
         raise ValueError("ETF code must be either '0050' or '0056'")
 
     # 設定下載路徑
-    TARGET_DIR = f"/mnt/etf/{etf_code}"  # 最終儲存位置
+    TARGET_DIR = f"/mnt/etf_data/{etf_code}"  # 最終儲存位置
 
     chromium = playwright.chromium  # or "firefox" or "webkit".
     browser = await chromium.launch(headless=True)
