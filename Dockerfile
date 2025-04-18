@@ -21,8 +21,7 @@ COPY . .
 
 # 安裝 Python 套件
 RUN uv sync
-RUN uv run playwright install
-RUN uv run playwright install-deps
+RUN uv run playwright install --with-deps
 
 # 設定啟動命令
 CMD ["uv", "run", "start"]

@@ -1,17 +1,18 @@
 from playwright.async_api import Playwright
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
-async def download_etf_csv_service(playwright: Playwright, etf_code: str):
+async def download_etf_csv(playwright: Playwright, etf_code: str):
     if etf_code not in ["0050", "0056"]:
         raise ValueError("ETF code must be either '0050' or '0056'")
 
     # 設定下載路徑
     TARGET_DIR = f"/mnt/etf/{etf_code}"  # 最終儲存位置
 
-    today = datetime.today().strftime("%Y%m%d")
-    filename = f"{today}_{etf_code}.csv"
+    today = datetime.today()
+    yesterday = (today - timedelta(days=1)).strftime("%Y%m%d")
+    filename = f"{yesterday}_{etf_code}.csv"
 
     chromium = playwright.chromium  # or "firefox" or "webkit".
     browser = await chromium.launch(headless=True)
