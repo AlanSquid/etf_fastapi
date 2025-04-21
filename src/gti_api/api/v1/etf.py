@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
-from n8n_fastapi.services.etf_service import download_etf_csv
-from n8n_fastapi.dependencies import get_playwright
+from gti_api.services.etf_service import download_etf_csv
+from gti_api.dependencies import get_playwright
 
 router = APIRouter()
 

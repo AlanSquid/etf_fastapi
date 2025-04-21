@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from n8n_fastapi.api.v1.etf import router as etf_router
+from gti_api.api.v1.etf import router as etf_router
 from playwright.async_api import async_playwright
 import uvicorn
 

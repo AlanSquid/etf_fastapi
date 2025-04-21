@@ -1,10 +1,10 @@
 services:
-  fastapi:
+  api:
     build:
       context: .  # 指向 Dockerfile 所在目錄
       dockerfile: Dockerfile
-    image: n8n_fastapi # 指定映像名稱
-    container_name: fastapi-server
+    image: gti_api # 指定映像名稱
+    container_name: gti_api
     volumes:
       - ${N8N_DATA_PATH}/etf_data:/mnt/etf_data  # 將N8N_DATA_PATH路徑目錄掛載到容器內
       - .:/app  # 將專案根目錄載到容器內的/app，方便修改程式碼後不需要重建映像

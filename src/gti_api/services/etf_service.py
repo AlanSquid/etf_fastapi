@@ -1,8 +1,6 @@
 from playwright.async_api import Playwright
 import os
-from datetime import datetime, timedelta
-from n8n_fastapi.utils.get_file_date import get_file_date
-
+from gti_api.utils.get_file_date import get_file_date
 
 async def download_etf_csv(playwright: Playwright, etf_code: str):
     if etf_code not in ["0050", "0056"]:
