@@ -1,5 +1,5 @@
 [project]
-name = "n8n-fastapi"
+name = "gti_api"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-start = "n8n_fastapi.main:main"
+start = "gti_api.main:main"
 
 [build-system]
 requires = ["hatchling"]
